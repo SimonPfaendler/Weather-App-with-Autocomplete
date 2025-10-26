@@ -5,6 +5,7 @@ import Forecast from './components/forecast/forecast';
 import CurrentWeather from './components/current-weather/current-weather';
 import { WEATHER_API_URL, WEATHER_API_KEY, FORECAST_API_URL } from './api';
 import { useState } from 'react';
+import Toggle from './components/toggle/toggle';
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
@@ -29,6 +30,11 @@ function App() {
   console.log(forecast);
   return (
     <div className="container">
+
+      <div style={{ display: "flex", justifyContent: "flex-end", margin: "10px" }}>
+        <Toggle />
+      </div>
+
       <Search onSearchChange={handleSearchChange} />
       {currentWeather && <CurrentWeather data={currentWeather} />}
       {forecast && <Forecast data={forecast} />}
