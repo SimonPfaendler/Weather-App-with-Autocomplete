@@ -7,6 +7,8 @@ and view current weather data using the OpenWeather API and GeoDB Cities API.
 - City autocomplete powered by GeoDB Cities API
 - Current weather fetched from OpenWeatherMap
 - Responsive design built with React
+- Celsius/Fahrenheit conversion
+- Wind direction
 
 ## Tech Stack
 - React (Create React App)
@@ -26,5 +28,3 @@ and view current weather data using the OpenWeather API and GeoDB Cities API.
 ## 📝 TODO
 
 
-- Add Fahrenheit/Celsius toggle
-- Add dark mode
