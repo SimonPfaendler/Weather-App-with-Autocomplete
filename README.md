@@ -26,7 +26,7 @@ The app is deployed and available at: https://wheaterapp123.netlify.app/
 
 1. Clone the repo  
    ```bash
-   git clone https://github.com/YOUR-USERNAME/react-weather-app.git
+   git clone https://github.com/SimonPfaendler/Weather-App-with-Autocomplete.git
    ```
 2. Install dependencies
    ```bash
