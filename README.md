@@ -25,6 +25,6 @@ and view current weather data using the OpenWeather API and GeoDB Cities API.
 
 ## 📝 TODO
 
-- Add 5-day forecast component
+
 - Add Fahrenheit/Celsius toggle
 - Add dark mode

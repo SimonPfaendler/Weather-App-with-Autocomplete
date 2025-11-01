@@ -9,6 +9,8 @@ import Toggle from './components/toggle/toggle';
 function App() {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [forecast, setForecast] = useState(null);
+  const [theme, setTheme] = useState("light");
+  const [temperatureUnit, setTemperatureUnit] = useState("C"); // "C" for Celsius, "F" for Fahrenheit
   
   const handleSearchChange = (searchData) => {
     const[lat, lon] = searchData.value.split(" ");
@@ -26,18 +28,30 @@ function App() {
       })
       .catch((err) => console.log(err));
   }
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    document.body.style.backgroundColor = newTheme === "dark" ? "#0b1220" : "#f6f7fb";
+    document.body.style.color = newTheme === "dark" ? "#e6eef8" : "#0f172a";
+  };
+
+  const toggleTemperatureUnit = () => {
+    setTemperatureUnit(prevUnit => prevUnit === "C" ? "F" : "C");
+  };
+
   console.log(currentWeather);
   console.log(forecast);
   return (
     <div className="container">
 
       <div style={{ display: "flex", justifyContent: "flex-end", margin: "10px" }}>
-        <Toggle />
+        <Toggle theme={theme} onThemeChange={toggleTheme} />
       </div>
 
-      <Search onSearchChange={handleSearchChange} />
-      {currentWeather && <CurrentWeather data={currentWeather} />}
-      {forecast && <Forecast data={forecast} />}
+      <Search onSearchChange={handleSearchChange} theme={theme} />
+      {currentWeather && <CurrentWeather data={currentWeather} temperatureUnit={temperatureUnit} onTemperatureUnitToggle={toggleTemperatureUnit} />}
+      {forecast && <Forecast data={forecast} temperatureUnit={temperatureUnit} onTemperatureUnitToggle={toggleTemperatureUnit} />}
     </div>
   );
 }

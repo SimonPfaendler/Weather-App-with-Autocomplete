@@ -1,20 +1,11 @@
 // src/components/Toggle/toggle.js
-import React, { useState } from "react";
+import React from "react";
 
-export default function ThemeToggle() {
-  const [theme, setTheme] = useState("light");
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    document.body.style.backgroundColor = newTheme === "dark" ? "#0b1220" : "#f6f7fb";
-    document.body.style.color = newTheme === "dark" ? "#e6eef8" : "#0f172a";
-  };
-
+export default function ThemeToggle({ theme, onThemeChange }) {
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       <button
-        onClick={toggleTheme}
+        onClick={onThemeChange}
         style={{
           padding: "10px 20px",
           borderRadius: "8px",

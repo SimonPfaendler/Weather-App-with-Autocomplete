@@ -2,7 +2,7 @@ import { AsyncPaginate } from "react-select-async-paginate";
 import { useState } from "react";
 import { GEO_API_URL, geoApiOptions } from "../../api";
 
-const Search = ({ onSearchChange }) => {
+const Search = ({ onSearchChange, theme }) => {
   const [search, setSearch] = useState(null);
 
   const loadOptions = async (inputValue) => {
@@ -33,6 +33,60 @@ const Search = ({ onSearchChange }) => {
     onSearchChange(searchData);
   };
 
+  const customStyles = {
+    control: (provided, state) => ({
+      ...provided,
+      backgroundColor: theme === "dark" ? "#1e293b" : "#ffffff",
+      borderColor: state.isFocused 
+        ? (theme === "dark" ? "#4ea8ff" : "#1e90ff")
+        : (theme === "dark" ? "#334155" : "#cccccc"),
+      color: theme === "dark" ? "#e6eef8" : "#0f172a",
+      boxShadow: state.isFocused ? (theme === "dark" ? "0 0 0 1px #4ea8ff" : "0 0 0 1px #1e90ff") : "none",
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: theme === "dark" ? "#e6eef8" : "#0f172a",
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: theme === "dark" ? "#94a3b8" : "#666666",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: theme === "dark" ? "#e6eef8" : "#0f172a",
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: theme === "dark" ? "#1e293b" : "#ffffff",
+      borderColor: theme === "dark" ? "#334155" : "#cccccc",
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      backgroundColor: theme === "dark" ? "#1e293b" : "#ffffff",
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? theme === "dark" ? "#334155" : "#e0e0e0"
+        : state.isFocused
+        ? theme === "dark" ? "#334155" : "#f5f5f5"
+        : theme === "dark" ? "#1e293b" : "#ffffff",
+      color: theme === "dark" ? "#e6eef8" : "#0f172a",
+    }),
+    indicatorsContainer: (provided) => ({
+      ...provided,
+      color: theme === "dark" ? "#e6eef8" : "#0f172a",
+    }),
+    indicatorSeparator: (provided) => ({
+      ...provided,
+      backgroundColor: theme === "dark" ? "#334155" : "#cccccc",
+    }),
+    dropdownIndicator: (provided) => ({
+      ...provided,
+      color: theme === "dark" ? "#e6eef8" : "#0f172a",
+    }),
+  };
+
   return (
     <AsyncPaginate
       placeholder="Search for city"
@@ -40,6 +94,7 @@ const Search = ({ onSearchChange }) => {
       value={search}
       onChange={handleOnChange}
       loadOptions={loadOptions}
+      styles={customStyles}
     />
   );
 };
