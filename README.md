@@ -20,9 +20,7 @@ and view current weather data using the OpenWeather API and GeoDB Cities API.
 
 ## 🌐 Live Website
 
-The app is deployed and available at: [Your Netlify URL]
-
-(Replace "Your Netlify URL" with your actual Netlify deployment URL, e.g., `https://your-app-name.netlify.app`)
+The app is deployed and available at: https://wheaterapp123.netlify.app/
 
 ## How to Run Locally
 
