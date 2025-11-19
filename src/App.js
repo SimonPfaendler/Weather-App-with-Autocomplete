@@ -124,7 +124,6 @@ function App() {
             fontWeight: "bold"
           }}
         >
-          📍 Use Current Location
         </button>
         <Toggle theme={theme} onThemeChange={toggleTheme} />
       </div>
