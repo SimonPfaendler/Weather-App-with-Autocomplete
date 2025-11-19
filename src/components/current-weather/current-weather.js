@@ -1,9 +1,9 @@
 import "./current-weather.css";
 
-const CurrentWeather = ({ data, temperatureUnit, onTemperatureUnitToggle }) => {
+const CurrentWeather = ({ data, temperatureUnit, onTemperatureUnitToggle, isFavorite, onToggleFavorite }) => {
     const convertTemperature = (celsius) => {
         if (temperatureUnit === "F") {
-            return Math.round(celsius * 9/5 + 32);
+            return Math.round(celsius * 9 / 5 + 32);
         }
         return Math.round(celsius);
     };
@@ -27,14 +27,26 @@ const CurrentWeather = ({ data, temperatureUnit, onTemperatureUnitToggle }) => {
         <div className="weather">
             <div className="top">
                 <div>
-                    <p className="city">{data.city}</p>
+                    <div className="city-row">
+                        <p className="city">{data.city}</p>
+                        <button
+                            className={`favorite-btn ${isFavorite ? 'active' : ''}`}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onToggleFavorite();
+                            }}
+                            title={isFavorite ? "Remove from favorites" : "Add to favorites"}
+                        >
+                            {isFavorite ? '♥' : '♡'}
+                        </button>
+                    </div>
                     <p className="weather-description">{data.weather[0].description}</p>
                 </div>
-                <img  alt="weather" className = "weather-icon" src={`icons/${data.weather[0].icon}.png`} />
+                <img alt="weather" className="weather-icon" src={`icons/${data.weather[0].icon}.png`} />
             </div>
             <div className="bottom">
-                <p 
-                    className="temperature" 
+                <p
+                    className="temperature"
                     onClick={onTemperatureUnitToggle}
                     style={{ cursor: 'pointer' }}
                     title="Click to toggle between Celsius and Fahrenheit"
@@ -47,10 +59,10 @@ const CurrentWeather = ({ data, temperatureUnit, onTemperatureUnitToggle }) => {
                     </div>
                     <div className="parameter-row">
                         <span className="parameter-label">Feels like</span>
-                        <span className="parameter-value" 
-                              onClick={onTemperatureUnitToggle}
-                              style={{ cursor: 'pointer' }}
-                              title="Click to toggle between Celsius and Fahrenheit">
+                        <span className="parameter-value"
+                            onClick={onTemperatureUnitToggle}
+                            style={{ cursor: 'pointer' }}
+                            title="Click to toggle between Celsius and Fahrenheit">
                             {convertTemperature(data.main.feels_like)}°{temperatureUnit}
                         </span>
                     </div>
@@ -58,7 +70,7 @@ const CurrentWeather = ({ data, temperatureUnit, onTemperatureUnitToggle }) => {
                         <span className="parameter-label">Wind</span>
                         <span className="parameter-value" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                             {data.wind.deg !== undefined && (
-                                <span 
+                                <span
                                     className="wind-arrow"
                                     style={{
                                         display: 'inline-block',
@@ -90,7 +102,7 @@ const CurrentWeather = ({ data, temperatureUnit, onTemperatureUnitToggle }) => {
                 </div>
             </div>
         </div>
-            
+
     );
 }
 
