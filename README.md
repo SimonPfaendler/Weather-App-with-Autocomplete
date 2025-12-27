@@ -11,6 +11,8 @@ and view current weather data using the OpenWeather API and GeoDB Cities API.
 - Celsius/Fahrenheit conversion
 - Wind direction indicators
 - Dark/Light mode toggle
+- Current Location
+- Favourite Locations List
 
 ## Tech Stack
 - React (Create React App)
