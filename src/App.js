@@ -114,16 +114,19 @@ function App() {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "10px" }}>
         <button
           onClick={handleLocationClick}
+          disabled={loading}
           style={{
             padding: "8px 15px",
             borderRadius: "5px",
             border: "none",
-            backgroundColor: "#4a90e2",
+            backgroundColor: loading ? "#9ca3af" : "#4a90e2",
             color: "white",
-            cursor: "pointer",
-            fontWeight: "bold"
+            cursor: loading ? "not-allowed" : "pointer",
+            fontWeight: "bold",
+            transition: "background-color 0.3s ease"
           }}
         >
+          {loading ? "Locating..." : "📍 Current Location"}
         </button>
         <Toggle theme={theme} onThemeChange={toggleTheme} />
       </div>
