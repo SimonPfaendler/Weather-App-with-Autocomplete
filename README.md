@@ -48,6 +48,6 @@ This app is deployed on **Netlify**. The `netlify.toml` configuration file handl
 
 
 ## 📝 TODO
-- Fix Bug with saved Location
+
 
 
